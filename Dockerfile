@@ -18,6 +18,8 @@ RUN yum install -y \
     ImageMagick \
     ImageMagick-devel \
     libcurl-devel \
+    libexif \
+    libexif-devel \
     libffi-devel \
     libfontconfig.so.1 \
     libfreetype.so.6 \
@@ -42,6 +44,7 @@ RUN yum install -y \
     MariaDB-client \
     MariaDB-server \
     MariaDB-devel \
+    MariaDB-shared \
 &&  yum clean all
 
 # 言語とタイムゾーン
