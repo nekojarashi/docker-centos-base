@@ -6,30 +6,41 @@ RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup -o /root/m
     sh /root/mariadb_repo_setup.sh --mariadb-server-version=mariadb-10.3.8
 
 RUN yum install -y \
-    epel-release \
-    openssh-server \
-    openssl-devel \
-    readline-devel\
-    zlib-devel \
-    wget \
-    curl \
-    git \
-    dtach \
-    vim \
-    hash-slinger \
     bzip2 \
-    tar \
+    curl \
+    dtach \
+    epel-release \
+    fontconfig \
+    freetype \
+    gdbm-devel \
+    git \
+    hash-slinger \
     ImageMagick \
     ImageMagick-devel \
+    libcurl-devel \
     libffi-devel \
+    libfontconfig.so.1 \
+    libfreetype.so.6 \
+    libsndfile-devel \
+    libstdc++.so.6 \
     libxslt-devel \
+    libyaml-devel \
+    openssh-server \
+    openssl-devel \
     python \
+    readline-devel \
+    sqlite-devel \
+    sudo httpd-devel \
+    tar \
+    vim \
+    wget \
+    zlib-devel \
 &&  yum groupinstall "Development Tools" -y \
 &&  yum install -y --enablerepo=epel \
     npm \
 &&  yum install -y \
-    MariaDB-server \
     MariaDB-client \
+    MariaDB-server \
     MariaDB-devel \
 &&  yum clean all
 
