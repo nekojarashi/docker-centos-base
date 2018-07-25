@@ -1,10 +1,7 @@
 FROM centos:centos7.5.1804
 LABEL maintainer="y-okubo"
 
-# MariaDB
-RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup -o /root/mariadb_repo_setup.sh && \
-    sh /root/mariadb_repo_setup.sh --mariadb-server-version=mariadb-10.3.8
-
+RUN yum groupinstall "Development Tools" -y
 RUN yum install -y \
     bzip2 \
     curl \
@@ -40,21 +37,22 @@ RUN yum install -y \
     tar \
     vim \
     wget \
-    zlib-devel \
-&&  yum groupinstall "Development Tools" -y \
-&&  yum install -y --enablerepo=epel \
-    npm \
-&&  yum install -y \
+    zlib-devel
+RUN yum install -y --enablerepo=epel npm
+# MariaDB
+RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup -o /root/mariadb_repo_setup.sh && \
+    sh /root/mariadb_repo_setup.sh --mariadb-server-version=mariadb-10.3.8
+RUN yum install -y \
     MariaDB-client \
     MariaDB-server \
     MariaDB-devel \
-    MariaDB-shared \
-&&  yum clean all
+    MariaDB-shared
+RUN yum clean all
 
 # 言語とタイムゾーン
 ENV LANG=ja_JP.UTF-8
 RUN localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
-RUN \cp -p /usr/share/zoneinfo/Japan /etc/localtime \
+RUN cp -p /usr/share/zoneinfo/Japan /etc/localtime \
 &&  echo 'ZONE="Asia/Tokyo"' > /etc/sysconfig/clock
 
 # SSH ログイン有効化
