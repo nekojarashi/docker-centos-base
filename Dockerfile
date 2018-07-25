@@ -2,6 +2,7 @@ FROM centos:centos6.9
 LABEL maintainer="y-okubo"
 
 RUN yum install -y http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
+RUN yum groupinstall "Development Tools" -y
 RUN yum install -y \
     bzip2 \
     curl \
@@ -34,16 +35,14 @@ RUN yum install -y \
     tar \
     vim \
     wget \
-    zlib-devel \
-&&  yum groupinstall "Development Tools" -y \
-&&  yum install -y --enablerepo=epel \
-    npm \
-&&  yum clean all
+    zlib-devel
+RUN yum install -y --enablerepo=epel npm
+RUN yum clean all
 
 # 言語とタイムゾーン
 ENV LANG=ja_JP.UTF-8
 RUN localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
-RUN \cp -p /usr/share/zoneinfo/Japan /etc/localtime \
+RUN cp -p /usr/share/zoneinfo/Japan /etc/localtime \
 &&  echo 'ZONE="Asia/Tokyo"' > /etc/sysconfig/clock
 
 # SSH ログイン有効化
