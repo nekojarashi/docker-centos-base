@@ -15,6 +15,7 @@ RUN yum install -y \
     gdbm-devel \
     git \
     hash-slinger \
+    httpd-devel \
     ImageMagick \
     ImageMagick-devel \
     libcurl-devel \
@@ -23,16 +24,19 @@ RUN yum install -y \
     libffi-devel \
     libfontconfig.so.1 \
     libfreetype.so.6 \
+    libsndfile \
     libsndfile-devel \
     libstdc++.so.6 \
     libxslt-devel \
     libyaml-devel \
     openssh-server \
     openssl-devel \
+    perl-Image-ExifTool \
     python \
     readline-devel \
+    sqlite \
     sqlite-devel \
-    sudo httpd-devel \
+    sudo \
     tar \
     vim \
     wget \
@@ -53,7 +57,7 @@ RUN localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
 RUN \cp -p /usr/share/zoneinfo/Japan /etc/localtime \
 &&  echo 'ZONE="Asia/Tokyo"' > /etc/sysconfig/clock
 
-# Enable SSH login.
+# SSH ログイン有効化
 RUN sed -ri 's/^#PermitRootLogin yes/PermitRootLogin yes/' /etc/ssh/sshd_config \
 &&  echo 'root:root' | chpasswd \
 &&  ssh-keygen -t rsa -N "" -f /etc/ssh/ssh_host_rsa_key
