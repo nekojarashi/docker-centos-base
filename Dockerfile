@@ -13,6 +13,9 @@ RUN yum install -y \
     httpd-devel \
     ImageMagick \
     ImageMagick-devel \
+    libcurl-devel \
+    libexif \
+    libexif-devel \
     libffi-devel \
     libfontconfig.so.1 \
     libfreetype.so.6 \
