@@ -1,16 +1,13 @@
 FROM centos:centos7.5.1804
 LABEL maintainer="y-okubo"
 
+RUN yum install -y epel-release
 RUN yum groupinstall "Development Tools" -y
 RUN yum install -y \
-    bzip2 \
-    curl \
-    dtach \
-    epel-release \
+    https://rpmfind.net/linux/centos/6.10/os/x86_64/Packages/dtach-0.8-4.el6.x86_64.rpm \
     fontconfig \
     freetype \
     gdbm-devel \
-    git \
     hash-slinger \
     httpd-devel \
     ImageMagick \
@@ -26,19 +23,17 @@ RUN yum install -y \
     libstdc++.so.6 \
     libxslt-devel \
     libyaml-devel \
+    npm \
     openssh-server \
     openssl-devel \
     perl-Image-ExifTool \
     python \
     readline-devel \
-    sqlite \
     sqlite-devel \
     sudo \
-    tar \
     vim \
     wget \
     zlib-devel
-RUN yum install -y --enablerepo=epel npm
 # MariaDB
 RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup -o /root/mariadb_repo_setup.sh && \
     sh /root/mariadb_repo_setup.sh --mariadb-server-version=mariadb-10.3.8
