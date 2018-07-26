@@ -2,13 +2,11 @@ FROM centos:centos6.9
 LABEL maintainer="y-okubo"
 
 RUN yum install -y http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
+RUN yum install -y epel-release
 RUN yum groupinstall "Development Tools" -y
 RUN yum install -y \
-    bzip2 \
     curl \
     dtach \
-    epel-release \
-    git \
     hash-slinger \
     httpd-devel \
     ImageMagick \
@@ -24,22 +22,19 @@ RUN yum install -y \
     libstdc++.so.6 \
     libxslt-devel \
     libyaml-devel \
-    mysql \
-    mysql-devel \
+    mysql-community-client \
+    mysql-community-devel \
     mysql-utilities \
+    npm \
     openssh-server \
     openssl-devel \
     perl-Image-ExifTool \
-    python \
     readline-devel \
-    sqlite \
     sqlite-devel \
     sudo \
-    tar \
     vim \
     wget \
     zlib-devel
-RUN yum install -y --enablerepo=epel npm
 RUN yum clean all
 
 # 言語とタイムゾーン
