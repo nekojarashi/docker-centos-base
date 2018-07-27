@@ -1,10 +1,10 @@
 FROM centos:centos6.9
 LABEL maintainer="y-okubo"
 
-RUN yum install -y http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
-RUN yum install -y epel-release
-RUN yum groupinstall "Development Tools" -y
-RUN yum install -y \
+RUN yum install -y http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm \
+&&  yum groupinstall "Development Tools" -y \
+&&  yum install -y epel-release \
+&&  yum install -y \
     curl \
     dtach \
     hash-slinger \
@@ -34,8 +34,9 @@ RUN yum install -y \
     sudo \
     vim \
     wget \
-    zlib-devel
-RUN yum clean all
+    zlib-devel \
+&&  rm -rf /var/cache/yum/* \
+&&  yum clean all
 
 # 言語とタイムゾーン
 ENV LANG=ja_JP.UTF-8
