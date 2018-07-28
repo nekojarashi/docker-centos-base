@@ -40,8 +40,8 @@ RUN yum install -y http://dev.mysql.com/get/mysql-community-release-el6-5.noarch
 
 # 言語とタイムゾーン
 ENV LANG=ja_JP.UTF-8
-RUN localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
-RUN cp -p /usr/share/zoneinfo/Japan /etc/localtime \
+RUN localedef -f UTF-8 -i ja_JP ja_JP.UTF-8 \
+&&  cp -p /usr/share/zoneinfo/Japan /etc/localtime \
 &&  echo 'ZONE="Asia/Tokyo"' > /etc/sysconfig/clock
 
 # SSH ログイン有効化
