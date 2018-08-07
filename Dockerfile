@@ -51,7 +51,9 @@ RUN localedef -f UTF-8 -i ja_JP ja_JP.UTF-8 \
 
 # SSH ログイン有効化
 RUN sed -ri 's/^#PermitRootLogin yes/PermitRootLogin yes/' /etc/ssh/sshd_config \
-&&  echo 'root:root' | chpasswd \
-&&  ssh-keygen -t rsa -N "" -f /etc/ssh/ssh_host_rsa_key
+&&  sed -ri 's/^#PermitEmptyPasswords no/PermitEmptyPasswords yes/' /etc/ssh/sshd_config \
+&&  sed -ri 's/^UsePAM yes/UsePAM no/' /etc/ssh/sshd_config \
+&&  passwd -d root
+
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
